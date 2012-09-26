@@ -9,7 +9,6 @@ module Localeapp
     def post_translation(locale, key, options, value = nil)
       options ||= {}
       options.delete(:default)
-      options.delete(:scope)
       scope = options.delete(:scope)
       normalized_key = I18n.normalize_keys(nil, key, scope).join('.')
       translation = { :key => normalized_key, :locale => locale, :substitutions => options.keys.sort, :description => value}
