@@ -39,6 +39,7 @@ module Localeapp
         :success => :handle_missing_translation_success,
         :failure => :handle_missing_translation_failure,
         :max_connection_attempts => 1
+      Localeapp.missing_translations.reset
     end
 
     def handle_missing_translation_success(response)

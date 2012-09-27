@@ -24,7 +24,7 @@ module Localeapp
       @translations.sort { |a, b| a.to_s <=> b.to_s }.each do |locale, records|
         records.each do |key, record|
           missing_data = {}
-          missing_data[:key] = key
+          missing_data[:key] = localize_key(key, record.options)
           missing_data[:locale] = locale
           missing_data[:description] = record.description if record.description
           missing_data[:options] = record.options
@@ -32,6 +32,15 @@ module Localeapp
         end
       end
       data
+    end
+    
+    def localize_key(key, options)
+      scope = (options || {}).delete(:scope)
+      I18n.normalize_keys(nil, key, scope).join('.')
+    end
+    
+    def reset
+      @translations.clear
     end
   end
 end
