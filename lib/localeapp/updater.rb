@@ -3,11 +3,11 @@ require 'fileutils'
 module Localeapp
   class Updater
 
-    def update(data)
+    def update(data, replace_file = false)
       data['locales'].each do |short_code|
         filename = File.join(Localeapp.configuration.translation_data_directory, "#{short_code}.yml")
 
-        if File.exist?(filename)
+        if !replace_file and File.exist?(filename)
           translations = Localeapp.load_yaml_file(filename)
           if data['translations'] && data['translations'][short_code]
             new_data = { short_code => data['translations'][short_code] }

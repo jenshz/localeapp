@@ -30,7 +30,7 @@ describe Localeapp::CLI::Pull, "#update_backend(response)" do
   it "calls the updater" do
     with_configuration do
       Localeapp.poller.stub!(:write_synchronization_data!)
-      Localeapp.updater.should_receive(:update).with(['test data'])
+      Localeapp.updater.should_receive(:update).with(['test data'], true)
       @puller.update_backend(@test_data)
     end
   end
