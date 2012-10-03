@@ -17,7 +17,7 @@ module Localeapp
           translations = { short_code => data['translations'][short_code] }
         end
 
-        if data['deleted']
+        if !replace_file and data['deleted']
           data['deleted'].each do |key|
             remove_flattened_key!(translations, short_code, key)
           end
