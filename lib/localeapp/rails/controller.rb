@@ -25,7 +25,7 @@ module Localeapp
       end
 
       def send_missing_translations
-        return if ::Localeapp.configuration.sending_disabled?
+        return if ::Localeapp.configuration.nil? or ::Localeapp.configuration.sending_disabled?
 
         ::Localeapp.sender.post_missing_translations
       end
